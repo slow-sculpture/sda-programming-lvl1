@@ -3,13 +3,11 @@ package pl.sda.poznan.collections.array;
 public interface MyList {
     /**
      * Zwraca aktualny rozmiar listy
-     * @return
      */
     int size();
 
     /**
      * Odp na pytanie czy lista jest pusta
-     * @return
      */
     boolean isEmpty();
 

@@ -4,7 +4,7 @@ package pl.sda.poznan.collections.array;
 import java.util.Arrays;
 
 /**
- * custom - nasza implementacja ArrayList ale wzrowana na gotowej z javy
+ * custom - nasza implementacja ArrayList ale wzorowana na gotowej z javy
  * Lista wykorzystujaca tablice, przechowuje wartosci typu String
  * implementacja podobna do klasy java.util.ArrayList
  * Lista powinna miec nastepujace funkcje:
@@ -17,7 +17,7 @@ import java.util.Arrays;
  * g) wyczyszczenie wszystkich wartosci
  * h) pobieranie po indeksie
  * i) usuwanie po indeksie
- * <p>
+ *
  * sygnatury dajemy do interfejsu
  */
 public class ArrayListCustom implements MyList {
