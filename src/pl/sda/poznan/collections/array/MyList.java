@@ -12,25 +12,22 @@ public interface MyList {
     boolean isEmpty();
 
     /**
-     *czy zawiera element
+     * czy zawiera element
      */
     boolean contains(String o);
 
     /**
      * dodawanie elementu na koniec listy
-
      */
     boolean add(String e);
 
     /**
      * Dodaje element na okreslona pozycje
-
      */
     void add(int index, String element);
 
     /**
      * Usuwa element podany jako argument (o ile taki wystepuje)
-
      */
     boolean remove(String o);
 
@@ -41,15 +38,18 @@ public interface MyList {
 
     /**
      * Zwraca el po indeksie (pozycji)
-
      */
     String get(int index);
 
     /**
      * usuwanie po indeksie
-
      */
     String remove(int index);
+
+    /**
+     * Usuwa element na koncu
+     */
+    String removeFromEnd();
 
     /**
      * Zwraca indeks pierwszego wystapienia napisu
