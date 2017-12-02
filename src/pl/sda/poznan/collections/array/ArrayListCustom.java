@@ -88,7 +88,7 @@ public class ArrayListCustom implements MyList {
 
         //przekopiuj stare wartosci na nowe pozycje
         int j = 0;
-        for(int i = index+1; i<size; i++){
+        for (int i = index + 1; i < size; i++) {
             values[i] = restOfArray[j];
         }
 
@@ -196,7 +196,7 @@ public class ArrayListCustom implements MyList {
     /////klasa pomocnicza - refactor-extract-method z remove zrobione
     /////automatycznie podmienilo tez w get
     private void checkRange(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
     }
