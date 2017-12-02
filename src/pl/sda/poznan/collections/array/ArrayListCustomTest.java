@@ -95,4 +95,21 @@ public class ArrayListCustomTest {
         assertEquals(2, list.size());
     }
 
+    @Test
+    public void shouldAddInSelectedIndex(){
+        MyList list = new ArrayListCustom();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.add("e");
+        list.add("f");
+        list.add("g");
+        list.add(2, "ELEMENT");
+        assertEquals(8,list.size());
+        assertEquals("ELEMENT", list.get(2));
+        System.out.println(list.get(2));
+        System.out.println(list.get(0));
+    }
+
 }

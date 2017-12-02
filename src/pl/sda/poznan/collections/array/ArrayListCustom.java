@@ -76,6 +76,23 @@ public class ArrayListCustom implements MyList {
 
     @Override
     public void add(int index, String element) {
+        //spr czy index nie wykracza poza tablice
+        checkRange(index);
+
+        //przkopiuj reszte elementow do pomocniczej tablicy
+        String[] restOfArray = Arrays.copyOfRange(values, index, size);
+
+        //wstaw nowy el w miejscu index
+        values[index] = element;
+        size++;
+
+        //przekopiuj stare wartosci na nowe pozycje
+        int j = 0;
+        for(int i = index+1; i<size; i++){
+            values[i] = restOfArray[j];
+        }
+
+        //nie zapominaj o zmennej size!
 
     }
 
@@ -90,7 +107,7 @@ public class ArrayListCustom implements MyList {
         wiec jezeli ten el jest rozny od null
         to zakladamy ze kasowanie sie udalo i wynikiem tej funkcji bedzie true
          */
-        int i =indexOf(o);
+        int i = indexOf(o);
         String deleted = remove(i);
         return deleted != null;
     }
@@ -130,15 +147,13 @@ public class ArrayListCustom implements MyList {
         size--;
         //kopiowanie reszty tablicy do oryginalenj tablicy
         int j = 0;
-        for(int i = index; i<size; i++){
+        for (int i = index; i < size; i++) {
 
             values[i] = restOfArrays[j++];
         }
         values[size] = null;
         return toDelete;
     }
-
-
 
 
     //Pobierz ostatni element do zmiennej pomocnicznej toDelete
