@@ -81,13 +81,18 @@ public class ArrayListCustom implements MyList {
 
     @Override
     public boolean remove(String o) {
-        for (int i = 0; i < size; i++) {
-            if (values[i] == o) {
-                values[i] = null;
-                return true;
-            }
-        }
-        return false;
+        /*
+        mamy usunac el podany jako argument
+        wiec funkcja indexOf sprawdzamy jaki ma index
+        mamy funkcje ktora usuwa el po indeksie
+        wec majac indeks wywolujemy funcje do kasowania po indeksie
+        funkcja ta zwraca usuniety el
+        wiec jezeli ten el jest rozny od null
+        to zakladamy ze kasowanie sie udalo i wynikiem tej funkcji bedzie true
+         */
+        int i =indexOf(o);
+        String deleted = remove(i);
+        return deleted != null;
     }
 
     @Override
@@ -107,23 +112,33 @@ public class ArrayListCustom implements MyList {
          */
 
 
-
-
-}
+    }
 
     @Override
     public String get(int index) {
-        if (index<0 || index > size){
-            //return null;
-            throw new ArrayIndexOutOfBoundsException(index);
-        }
+        checkRange(index);
         return this.values[index];
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        //pomocncza metoda prywatna do sprawdzenia prawidlowego zakresu tablicy
+        checkRange(index);
+        String toDelete = values[index]; //przechwytujemy wartosc
+        values[index] = null;
+        String[] restOfArrays = Arrays.copyOfRange(values, index + 1, size);
+        size--;
+        //kopiowanie reszty tablicy do oryginalenj tablicy
+        int j = 0;
+        for(int i = index; i<size; i++){
+
+            values[i] = restOfArrays[j++];
+        }
+        values[size] = null;
+        return toDelete;
     }
+
+
 
 
     //Pobierz ostatni element do zmiennej pomocnicznej toDelete
@@ -154,11 +169,22 @@ public class ArrayListCustom implements MyList {
      */
     @Override
     public int indexOf(String s) {
-        for(int i = 0; i<size; i++){
-            if(values[i].equals(s)){
-                return  i;
+        for (int i = 0; i < size; i++) {
+            if (values[i].equals(s)) {
+                return i;
             }
         }
         return -1;
     }
+
+
+    /////klasa pomocnicza - refactor-extract-method z remove zrobione
+    /////automatycznie podmienilo tez w get
+    private void checkRange(int index) {
+        if (index < 0 || index > size) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+    }
 }
+
+

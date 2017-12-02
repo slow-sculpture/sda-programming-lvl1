@@ -29,6 +29,10 @@ public class Application {
             System.out.println("Nie ma elementu o takim indeksie");
         }
 
+        //removeFromEnd
+        stringList.removeFromEnd();
+        System.out.println(stringList.get(3));
+
 
     }
 }
