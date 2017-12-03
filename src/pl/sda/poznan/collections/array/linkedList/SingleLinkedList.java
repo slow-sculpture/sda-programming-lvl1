@@ -29,7 +29,7 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public boolean contains(E element) {
-        return false;
+        return true;
     }
 
     @Override
@@ -131,9 +131,13 @@ public class SingleLinkedList<E> implements GenericList<E> {
      */
     @Override
     public boolean remove(E element) {
+        //jezeli nie mamy takiego el w kolekcji to zwroc false
+        if(!contains(element)){
+            return false;
+        }
         Node<E> helper = head;
         Node<E> prev = null;  //poprzedni element
-        while (helper.getNext() != null) {
+        while (helper != null) {
             if (helper.getValue().equals(element)) {
                 break;
             }
