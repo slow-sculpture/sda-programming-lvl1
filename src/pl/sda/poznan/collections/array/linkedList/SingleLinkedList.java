@@ -95,7 +95,8 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public void clear() {
-
+        head = null;
+        size = 0;
     }
 
     @Override
@@ -123,13 +124,14 @@ public class SingleLinkedList<E> implements GenericList<E> {
      * a drugiej na el poprzedzajacy
      * wiec helper ustawiamy na glowe a prev na null
      * poniewaz poprzednik glowy ma wartosc null
+     *
      * @param element
      * @return
      */
     @Override
     public boolean remove(E element) {
         //jezeli nie mamy takiego el w kolekcji to zwroc false
-        if(!contains(element)){
+        if (!contains(element)) {
             return false;
         }
         Node<E> helper = head;
@@ -161,7 +163,9 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        E element = this.get(index);
+        this.remove(element);
+        return element;
     }
 
     @Override

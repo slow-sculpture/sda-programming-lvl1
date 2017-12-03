@@ -131,4 +131,16 @@ public class SingleLinkedListTest {
 
     }
 
+    @Test
+    public void shouldClearList(){
+        SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
+        Person kierownik = new Person("Jan");
+        Person pacjent = new Person("Ewelina");
+        peopleList.add(kierownik);
+        peopleList.add(pacjent);
+
+        peopleList.clear();
+        assertEquals(0, peopleList.size());
+    }
+
 }
