@@ -35,22 +35,31 @@ public class SingleLinkedList<E> implements GenericList<E> {
     @Override
     public boolean add(E element) {
         size++;
-        //1. przypadek - lista jest pusta
-        //2. przypadek - lista ma elementy
-        if (head == null) { //obslugujemy przypadek pustej listy - wstawiamy 1st element
+        //1. przypadek - lista jest pusta (if)
+        //2. przypadek - lista ma elementy (else)
+        if (head == null) {
+            //obslugujemy przypadek pustej listy - wstawiamy 1st element
+            //jezeli lista jest pusta to stworz nowy wezel i ustaw referencje HEAD
+            //na nowy wezel - kniec
             head = new Node<E>(element);
         } else {
+            //wywolaj metode dodarwania n apoczatek lub konec - wybierz 1 wersje
             insertDataAtBeginning(element);
+            //insertDataAtEnd(element);
         }
         return false;
     }
 
     private void insertDataAtBeginning(E element) {
+        //utworz nowy wezel
         Node<E> newNode = new Node<>(element);
+        //ustaw nastepnik nowego wezla na stare wskazanie glowy
         newNode.setNext(head);
+        //zaktualizuj/przestaw stara wartosc glowy na nowy element
         head = newNode;
+        //newNode(HEAD) -> OLD HEAD -> NULL
 
-        //zlozonosc obliceniowa O(1) stala
+        //zlozonosc obliczeniowa O(1) stala
         // duzo wydajniejsza niz end czy ArrayList
     }
 
@@ -58,10 +67,20 @@ public class SingleLinkedList<E> implements GenericList<E> {
         //zmienna pomocnicz do iterowania po liscie
         //na poczatku ustawiamy ja na glowe listy
         //helper i head wskazuja na pocztek listy
+        //zmienna helper jes tpotrzeban aby nie stracic referencji z HEAD
+        //teraz helper i head pokazuja na pierwszy element listy
         Node<E> helper = head;
+
+        //sprawdzamy czy el ma nastepnik -> jezeli tak to przestaw helper na nastepnik
+        //w przeciwym przypadku dotarlismy do konca listy -> mozemy wstawic element
         while (helper.getNext() != null) {
             helper = head.getNext();
         }
+
+        //wstawianie elementu
+        //utworz nowy wezel
+        //teraz helper pokazduja na aktualnie ostatni element wiec ustaw wskaznik next
+        //
         Node<E> newNode = new Node<>(element);
         helper.setNext(newNode);
 
@@ -85,7 +104,24 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        //spr czy operujemy na dobrym zakresie
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Wrong index");
+        }
+        //spr czy list jest pusta - jesli tak to zwracamy null
+        if (head == null) {
+            return null;
+        }
+        //jezeli mamy jakis el to szuakmy go na liscie przechodzac przez jego wezly
+        int i = 0;
+        Node<E> helper = head;
+        //wykonuj tak dlugo az znajdziesz index szukanego el
+        while (i != index) {
+            helper = helper.getNext();
+            i++;
+        }
+        //zwroc wartosc z listy
+        return helper.getValue();
     }
 
     @Override
@@ -103,11 +139,14 @@ public class SingleLinkedList<E> implements GenericList<E> {
         return 0;
     }
 
-    public void print(E element) {
+    public void print() {
         Node<E> helper = head;
-        while (helper.getNext() != null){
-            System.out.println(helper);
 
-        }}
+        while (helper.getNext() != null) {
+            System.out.println(helper.getValue().toString());
+            helper = helper.getNext();
+        }
+        System.out.println(helper.getValue().toString());
+    }
 
 }
