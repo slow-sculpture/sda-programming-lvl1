@@ -80,7 +80,7 @@ public class SingleLinkedList<E> implements GenericList<E> {
         //wstawianie elementu
         //utworz nowy wezel
         //teraz helper pokazduja na aktualnie ostatni element wiec ustaw wskaznik next
-        //
+        //ostatniego elementu na newNode
         Node<E> newNode = new Node<>(element);
         helper.setNext(newNode);
 
@@ -92,10 +92,6 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     }
 
-    @Override
-    public boolean remove(Object element) {
-        return false;
-    }
 
     @Override
     public void clear() {
@@ -124,6 +120,44 @@ public class SingleLinkedList<E> implements GenericList<E> {
         return helper.getValue();
     }
 
+    /**
+     * W tej implementacji kazdy element tylko wskazanie na nastepny element
+     * wiec potrzebujemy dwoch referencji - jednej na znalezienie el do usuniecia
+     * a drugiej na el poprzedzajacy
+     * wiec helper ustawiamy na glowe a prev na null
+     * poniewaz poprzednik glowy ma wartosc null
+     * @param element
+     * @return
+     */
+    @Override
+    public boolean remove(E element) {
+        Node<E> helper = head;
+        Node<E> prev = null;  //poprzedni element
+        while (helper.getNext() != null) {
+            if (helper.getValue().equals(element)) {
+                break;
+            }
+            prev = helper;
+            helper = helper.getNext();
+
+        }
+        //jezeli poprzednik wynosi null -> to oznacza ze mamy skasowac glowe
+        //wiec referencje head przestawiamy o jeden el dalej
+        //w przciwnym przypadku w poprzedniku usuwanego el ustawaimy jego nastepnik
+        //na wartosc nastepnika aktualnie usuwanego elementu
+
+        if (prev == null) {
+            head = helper.getNext();
+
+        } else {
+            prev.setNext(helper.getNext());
+        }
+        //wstaw null do referencji helper -> garbage collector usunie obiekt z pamieci
+        helper = null;
+        size--;
+        return true;
+    }
+
     @Override
     public E remove(int index) {
         return null;
@@ -136,8 +170,30 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public int indexOf(E element) {
-        return 0;
+
+        Node<E> helper = head;
+        int index = 0;
+        //dopiki nie dojdziesz do konca listy, wykonuj:
+        while (helper != null) {
+            if (helper.getValue().equals(element)) {
+                return index;
+            }
+            helper = helper.getNext();
+            index++;
+        }
+        return -1;
+
+        //analogiczny zapis prz uzyciu petli for
+        /*for (int i = 0; i < size; i++) {
+            if (helper.getValue().equals(element)) {
+                return i;
+            }
+            helper = helper.getNext();
+
+        }
+        return -1;*/
     }
+
 
     public void print() {
         Node<E> helper = head;
