@@ -143,4 +143,35 @@ public class SingleLinkedListTest {
         assertEquals(0, peopleList.size());
     }
 
+    @Test
+    public void shouldRemoveFromEnd(){
+        SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
+        Person kierownik = new Person("Jan");
+        Person dyrektor = new Person("Adam");
+        Person student = new Person("Kasia");
+        Person pacjent = new Person("Ewelina");
+        peopleList.add(kierownik);
+        peopleList.add(dyrektor);
+        peopleList.add(student);
+        peopleList.add(pacjent);
+
+        peopleList.removeFromEnd();
+        assertEquals(3, peopleList.size());
+    }
+
+    @Test
+    public void shouldInsertWithIndex(){
+        SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
+        Person kierownik = new Person("Jan");
+        Person dyrektor = new Person("Adam");
+        Person student = new Person("Kasia");
+        Person pacjent = new Person("Ewelina");
+        peopleList.add(kierownik);
+        peopleList.add(dyrektor);
+        peopleList.add(student);
+        peopleList.add(0,pacjent);
+        assertEquals(pacjent, peopleList.get(0));
+        assertEquals(4, peopleList.size());
+    }
+
 }

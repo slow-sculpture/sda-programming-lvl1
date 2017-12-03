@@ -88,8 +88,35 @@ public class SingleLinkedList<E> implements GenericList<E> {
     }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, E element) {
+        Node<E> current = getNodeByIndex(index);
+        if(current == head){
+            size++;
+            insertDataAtBeginning(element);
+            return;
+        }
 
+        Node<E> prev = getNodeByIndex(index - 1);
+        Node<E> newNode = new Node<>(element);
+        prev.setNext(newNode);
+        newNode.setNext(current);
+        size++;
+    }
+
+    /**
+     * Prywatna metoda do zwracania wezla o indeksie
+     *
+     * @param index
+     * @return
+     */
+    private Node<E> getNodeByIndex(int index) {
+        Node<E> helper = head;
+        int i = 0;
+        while (i != index) {
+            helper = helper.getNext();
+            i++;
+        }
+        return helper;
     }
 
 
@@ -170,7 +197,11 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public E removeFromEnd() {
-        return null;
+//        E elemToDelete = get(size - 1);
+//        remove(elemToDelete);
+//        return elemToDelete;
+
+        return remove(size - 1);
     }
 
     @Override
