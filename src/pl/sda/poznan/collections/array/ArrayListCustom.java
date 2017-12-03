@@ -3,6 +3,13 @@ package pl.sda.poznan.collections.array;
 
 import java.util.Arrays;
 
+/*
+1. szybkie pobieranie -> bierze pierwszy element i wie na ktorej pozycji,
+wie ile bajtow (szesnastkowo) zajmuje jeden element
+-> wiec bierze adres pierwszego i mnozy ->niska zlozonosc obliczeniowa
+ */
+
+
 /**
  * custom - nasza implementacja ArrayList ale wzorowana na gotowej z javy
  * Lista wykorzystujaca tablice, przechowuje wartosci typu String
@@ -79,6 +86,11 @@ public class ArrayListCustom implements MyList {
         //spr czy index nie wykracza poza tablice
         checkRange(index);
 
+        //jezeli mamy pelna tablice
+        //przekopiuj stara tablice do nowej dwa razy wiekszej
+        if (size == values.length) {
+            values = Arrays.copyOf(values, size * 2);
+        }
         //przkopiuj reszte elementow do pomocniczej tablicy
         String[] restOfArray = Arrays.copyOfRange(values, index, size);
 
@@ -163,7 +175,7 @@ public class ArrayListCustom implements MyList {
     @Override
     public String removeFromEnd() {
         int indexOfLastElement = size - 1;  //size pokazduje na pierwsze wolne miejsce, a my chcemy usunac ostatni element
-        String toDelete = values[size];
+        String toDelete = values[indexOfLastElement];
         values[indexOfLastElement] = null;
         size--;
         return toDelete;

@@ -7,7 +7,7 @@ import java.util.List;
 public class GenericArrayList<E> implements GenericList<E> {
 
     //////////////////////////////// to samo jest w ArrayListCustom
-    private Object[] values;
+    private Object[] values;    //na razie dajemy typu Object bo zeby dac E trzeba sie posluzyc mechanizmem refleksji ktory bedzie pozniej
     private int size;
     private static final int INITIAL_SIZE = 20;
 
