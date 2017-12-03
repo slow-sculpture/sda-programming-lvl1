@@ -19,17 +19,17 @@ public class SingleLinkedList<E> implements GenericList<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return size > 0;
+        return size == 0;
     }
 
     @Override
     public boolean contains(E element) {
-        return true;
+        return indexOf(element) >= 0;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class SingleLinkedList<E> implements GenericList<E> {
         //sprawdzamy czy el ma nastepnik -> jezeli tak to przestaw helper na nastepnik
         //w przeciwym przypadku dotarlismy do konca listy -> mozemy wstawic element
         while (helper.getNext() != null) {
-            helper = head.getNext();
+            helper = helper.getNext();
         }
 
         //wstawianie elementu
@@ -104,10 +104,7 @@ public class SingleLinkedList<E> implements GenericList<E> {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Wrong index");
         }
-        //spr czy list jest pusta - jesli tak to zwracamy null
-        if (head == null) {
-            return null;
-        }
+
         //jezeli mamy jakis el to szuakmy go na liscie przechodzac przez jego wezly
         int i = 0;
         Node<E> helper = head;

@@ -10,39 +10,30 @@ public class SingleLinkedListTest {
     public void add() {
         SingleLinkedList<Person> people = new SingleLinkedList<>();
         Person kierownik = new Person("Jan");
-        Person dyrektor = new Person("Bob");
-        Person zul = new Person("Witek");
-        Person zul2 = new Person("Czarek");
-
+        Person dyrektor = new Person("Adam");
+        Person student = new Person("Kasia");
+        Person pacjent = new Person("Ewelina");
         people.add(kierownik);
         people.add(dyrektor);
-        people.add(zul);
-        people.add(zul2);
+        people.add(student);
+        people.add(pacjent);
         assertEquals(4, people.size());
-        people.print();
-        System.out.println();
-
-
     }
 
     @Test
-    public void shouldGetByIndex(){
-        SingleLinkedList<Person> list = new SingleLinkedList<>();
+    public void shouldGetByIndex() {
+        SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
         Person kierownik = new Person("Jan");
-        Person dyrektor = new Person("Bob");
-        Person zul = new Person("Witek");
-        Person zul2 = new Person("Czarek");
-        list.add(kierownik);
-        list.add(dyrektor);
-        list.add(zul);
-        list.add(zul2);
-
-        Person personByIndex = list.get(1);
+        Person dyrektor = new Person("Adam");
+        peopleList.add(kierownik);
+        peopleList.add(dyrektor);
+        Person personByIndex = peopleList.get(1);
         System.out.println(personByIndex);
 
+
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void shouldGetByIndexWhenEmptyList() {
         SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
         Person personByIndex = peopleList.get(0);
@@ -50,7 +41,6 @@ public class SingleLinkedListTest {
 
 
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowException(){
         SingleLinkedList<Person> peopleList = new SingleLinkedList<>();
