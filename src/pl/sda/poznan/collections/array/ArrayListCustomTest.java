@@ -12,6 +12,7 @@ public class ArrayListCustomTest {
     wybieramy junit4 - fix - ok
     import
     @Test
+    metody zawsze public void
      */
 
     @Test
@@ -34,12 +35,12 @@ public class ArrayListCustomTest {
         assertEquals("Rachel", deleted);
     }
 
-    //Test w ktorym usuwamy  pustej listy
-    //To jest sytuacja wyjatkowa wiec oczekujemy ze skonczy sie wyrzuceniem wyjatka
+    //Test w ktorym usuwamy z pustej listy
+    //To jest sytuacja wyjatkowa wiec oczekujemy ze skonczy sie wyrzuceniem wyjatku
     //nie umieszczamy bloku try-catch
     //tylko informuje junit. ze oczekuemy tego wyjatku
     //i test ma sie zakocznyc powodzeniem jest taki wyjatek zostanie rzucony
-    //informujemy o tym fakcie podajac nazwe wyjatkuu jako argument adnotacji
+    //informujemy o tym fakcie podajac nazwe wyjatku jako argument adnotacji
     //w expected przy wyjatku piszemy klase wyjatku jaka oczekuje a nie wartosc z funkcji
     @Test (expected = ArrayIndexOutOfBoundsException.class)
     public void shouldGetErrorWhenListEmpty(){

@@ -84,6 +84,9 @@ public class ArrayListCustom implements MyList {
          * a jak np. mamy 3 elementy to wstawiamy na index 3 (elementy sa na indexie 0, 1, 2)
          * no i chyba jeszcze:
          * size++;
+         *
+         * poprawka: prawdopodonie zastosowany zapis jest tozsamy z moim bo najpierw pobierz size
+         * a potem bedzie inkrementacja
          */
         return true;
     }
@@ -112,7 +115,7 @@ public class ArrayListCustom implements MyList {
             /**
             * wydaje mi sie ze tu powinno byc jeszcze:
             * j++;  -> bo kolejny index restoOfArray trzeba wziac - bez tego bedzie ciagle 0
-            * size++; -> po dodaniu kolejnego [j] do [i] bedzie sie zwiekszac size o 1
+             * albo restOfArray[j++]
             * */
         }
 

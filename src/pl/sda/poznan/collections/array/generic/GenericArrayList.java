@@ -49,12 +49,16 @@ public class GenericArrayList<E> implements GenericList<E> {
     @Override
     public void add(int index, E element) {
         checkRange(index);
+        if (size == values.length) {
+            values = Arrays.copyOf(values, size * 2);
+        }
         Object[] restOfArray = Arrays.copyOfRange(values, index, size);
         values[index] = element;
         size++;
         int j = 0;
         for (int i = index + 1; i < size; i++) {
             values[i] = restOfArray[j];
+            j++;
         }
 
     }
@@ -83,7 +87,10 @@ public class GenericArrayList<E> implements GenericList<E> {
 
     @Override
     public void clear() {
-
+        size = 0;
+        int newSize = values.length;
+        values = null;
+        values = new Object[newSize];
     }
 
     @Override
