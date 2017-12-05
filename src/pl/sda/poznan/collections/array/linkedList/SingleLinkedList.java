@@ -40,10 +40,10 @@ public class SingleLinkedList<E> implements GenericList<E> {
         if (head == null) {
             //obslugujemy przypadek pustej listy - wstawiamy 1st element
             //jezeli lista jest pusta to stworz nowy wezel i ustaw referencje HEAD
-            //na nowy wezel - kniec
-            head = new Node<E>(element);
+            //na nowy wezel - koniec
+            head = new Node<>(element);
         } else {
-            //wywolaj metode dodarwania n apoczatek lub konec - wybierz 1 wersje
+            //wywolaj metode dodarwania na poczatek lub koniec - wybierz 1 wersje
             insertDataAtBeginning(element);
             //insertDataAtEnd(element);
         }
