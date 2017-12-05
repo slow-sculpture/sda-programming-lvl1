@@ -78,6 +78,13 @@ public class ArrayListCustom implements MyList {
             values = Arrays.copyOf(values, size * 2);
         }
         values[size++] = e;
+        /**
+         * wydaje mi sie ze tu powinno byc:
+         * values[size] = e;  -> jak nie ma elementow to size = 0. wiec wstawiamy e na index 0;
+         * a jak np. mamy 3 elementy to wstawiamy na index 3 (elementy sa na indexie 0, 1, 2)
+         * no i chyba jeszcze:
+         * size++;
+         */
         return true;
     }
 
@@ -102,6 +109,11 @@ public class ArrayListCustom implements MyList {
         int j = 0;
         for (int i = index + 1; i < size; i++) {
             values[i] = restOfArray[j];
+            /**
+            * wydaje mi sie ze tu powinno byc jeszcze:
+            * j++;  -> bo kolejny index restoOfArray trzeba wziac - bez tego bedzie ciagle 0
+            * size++; -> po dodaniu kolejnego [j] do [i] bedzie sie zwiekszac size o 1
+            * */
         }
 
         //nie zapominaj o zmennej size!
