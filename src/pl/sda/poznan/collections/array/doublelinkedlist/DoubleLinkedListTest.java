@@ -52,4 +52,30 @@ public class DoubleLinkedListTest {
         assertEquals(del, "First");
     }
 
+    @Test
+    public void shouldReturnFalseIfIsNotPresent(){
+        list.add("1st");
+        list.add("2nd");
+        list.add("3rd");
+        list.add("4th");
+        list.add("5th");
+
+        boolean result = list.remove("Zero");
+        assertEquals(false, result);
+    }
+
+    @Test
+    public void shouldDeleteByElement(){
+        list.add("1st");
+        list.add("2nd");
+        list.add("3rd");
+        list.add("4th");
+        list.add("5th");
+
+        boolean result = list.remove("3rd");
+        assertEquals(result, true);
+        assertEquals(4, list.size());
+        assertEquals(false, list.contains("3rd"));
+    }
+
 }

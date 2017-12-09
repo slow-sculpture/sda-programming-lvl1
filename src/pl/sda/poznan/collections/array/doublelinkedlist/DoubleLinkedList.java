@@ -83,90 +83,118 @@ public class DoubleLinkedList<E> implements GenericList<E> {
         return helper;
     }
 
+    private Node<E> getNodeByElement(E element) {
+        Node<E> helper = first;
+        while (helper != null) {
+            if (helper.getData().equals(element)) {
+                return helper;
+            }
+            helper = helper.getNext();
+        }
+        return null;
+    }
+
     @Override
     public boolean remove(E element) {
         if (!contains(element)) {
             return false;
         }
+///////////////z zajec/\\\\\\\\\\\\\\\\\\
+    /*    Node<E> toDel = getNodeByElement(element);
+        //pobierz poprzednik usuwanego elementu
+        Node<E> prev = toDel.getPrev();
+        //pobierz nastepnik usuwanego elementu
+        Node<E> next = toDel.getNext();
+        //korekta wiazan
+        prev.setNext(next);
+        next.setPrev(prev);*/
+///////////////////\\\\\\\\\\\\\\\\\\\\\
+
+     ////////////////////////////moje/////////////////
+//        Node<E> toDel = first;
+//        Node<E> prev = null;
+//        while (toDel != null) {
+//            if (toDel.getData().equals(element)) {
+//                break;
+//            }
+//            prev = toDel;
+//            toDel.getNext();
+//        }
+
+        Node<E> toDelete = getNodeByElement(element);
+        Node<E> previous = toDelete.getPrev();
+        if (toDelete == first) {
+//            first = first.getNext();
+//            first.setPrev(null);
+            removeFromBeginning();
+        } else if (toDelete == last) {
+//            last = last.getPrev();
+//            last.setNext(null);
+            removeFromEnd();
+        } else {
+            toDelete = toDelete.getNext();
+            toDelete.setPrev(previous);
+            previous.setNext(toDelete);
+            size--;
+        }
+        return true;
+    }
+
+    /////////////////////////////////////////////////////////////////
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public E get(int index) {
+        return null;
+    }
+
+    @Override
+    public E remove(int index) {
+        //E toDel = getNodeByIndex(index);
+        //remove(toDel);
+        return null;
+    }
+
+    @Override
+    public E removeFromEnd() {
+        //dzieki podwojnemu wiazaniu mozliwe jest o wiele szybsze usuwanie
+
+        //pobierz wartosc ostatniego elementu
+        E deEl = last.getData();
+        //przestaw referencje last na przedostatni element
+        last = last.getPrev();
+        //nastepnik ostatniego elementu musi wskazywac na null
+        last.setNext(null);
+        //zmniejsz liste
+        size--;
+        //zwroc wartosc usuwanego elementu
+        return deEl;
+    }
+
+    public E removeFromBeginning() {
+        E delEl = first.getData();
+        first = first.getNext();
+        first.setPrev(null);
+        size--;
+        return delEl;
+    }
+
+    @Override
+    public int indexOf(E element) {
 
         Node<E> helper = first;
-        Node<E> prev = null;
-        Node<E> next = helper.getNext();
+        int index = 0;
         while (helper != null) {
             if (helper.getData().equals(element)) {
-                break;
+                return index;
             }
-            prev = helper;
-            helper.getNext();
-
-        }
-
-        if(helper == first){
-            first = first.getNext();
-            first.setPrev(null);
-        } else if (helper == last){
-            last = last.getPrev();
-            last.setNext(null);
-        } else {
             helper = helper.getNext();
-
+            index++;
         }
-
-
-            return true;
-        }
-
-        @Override
-        public void clear(){
-
-        }
-
-        @Override
-        public E get ( int index){
-            return null;
-        }
-
-        @Override
-        public E remove ( int index){
-            return null;
-        }
-
-        @Override
-        public E removeFromEnd () {
-            //dzieki podwojnemu wiazaniu mozliwe jest o wiele szybsze usuwanie
-
-            //pobierz wartosc ostatniego elementu
-            E deEl = last.getData();
-            //przestaw referencje last na przedostatni element
-            last = last.getPrev();
-            //nastepnik ostatniego elementu musi wskazywac na null
-            last.setNext(null);
-            //zmniejsz liste
-            size--;
-            //zwroc wartosc usuwanego elementu
-            return deEl;
-        }
-
-        public E removeFromBeginning(){
-            E delEl = first.getData();
-            first = first.getNext();
-            first.setPrev(null);
-            size--;
-            return delEl;
-        }
-
-        @Override
-        public int indexOf (E element){
-
-            Node<E> helper = first;
-            int index = 0;
-            while (helper != null) {
-                if (helper.getData().equals(element)) {
-                    return index;
-                }
-                helper = helper.getNext();
-                index++;
-            }
-            return -1;
-        }
+        return -1;
     }
+}
