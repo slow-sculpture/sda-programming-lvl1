@@ -1,6 +1,6 @@
-package pl.sda.poznan.collections.array.linkedList;
+package pl.sda.poznan.collections.list.linkedList;
 
-import pl.sda.poznan.collections.array.generic.GenericList;
+import pl.sda.poznan.collections.list.generic.GenericList;
 
 /**
  * Implementacj alisty jednokierunkowej

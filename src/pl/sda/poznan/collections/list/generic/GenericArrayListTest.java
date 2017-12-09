@@ -1,8 +1,6 @@
-package pl.sda.poznan.collections.array.generic;
+package pl.sda.poznan.collections.list.generic;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GenericArrayListTest {
     @Test

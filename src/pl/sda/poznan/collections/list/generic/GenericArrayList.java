@@ -1,8 +1,6 @@
-package pl.sda.poznan.collections.array.generic;
+package pl.sda.poznan.collections.list.generic;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class GenericArrayList<E> implements GenericList<E> {
 

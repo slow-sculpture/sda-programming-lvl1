@@ -1,4 +1,4 @@
-package pl.sda.poznan.collections.array.linkedList;
+package pl.sda.poznan.collections.list.linkedList;
 
 /**
  * Klasa reprezentujaca jeden wezel listy

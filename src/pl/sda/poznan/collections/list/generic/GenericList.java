@@ -1,4 +1,4 @@
-package pl.sda.poznan.collections.array.generic;
+package pl.sda.poznan.collections.list.generic;
 
 //////////////list generyczna (ogolna) dla dowolnego typu - roboczo typ wskazuje np. T, E
 

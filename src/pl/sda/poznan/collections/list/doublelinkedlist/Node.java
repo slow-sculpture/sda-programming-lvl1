@@ -1,4 +1,4 @@
-package pl.sda.poznan.collections.array.doublelinkedlist;
+package pl.sda.poznan.collections.list.doublelinkedlist;
 
 public class Node<E> {
     private E data;

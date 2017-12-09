@@ -1,6 +1,6 @@
-package pl.sda.poznan.collections.array.doublelinkedlist;
+package pl.sda.poznan.collections.list.doublelinkedlist;
 
-import pl.sda.poznan.collections.array.generic.GenericList;
+import pl.sda.poznan.collections.list.generic.GenericList;
 
 public class DoubleLinkedList<E> implements GenericList<E> {
     private Node<E> first;

@@ -1,4 +1,4 @@
-package pl.sda.poznan.collections.array;
+package pl.sda.poznan.collections.list;
 
 public interface MyList {
     /**

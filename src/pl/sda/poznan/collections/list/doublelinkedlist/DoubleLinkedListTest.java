@@ -1,7 +1,7 @@
-package pl.sda.poznan.collections.array.doublelinkedlist;
+package pl.sda.poznan.collections.list.doublelinkedlist;
 
 import org.junit.Test;
-import pl.sda.poznan.collections.array.generic.GenericList;
+import pl.sda.poznan.collections.list.generic.GenericList;
 
 import static org.junit.Assert.*;
 
