@@ -121,20 +121,20 @@ public class DoubleLinkedList<E> implements GenericList<E> {
 //            toDel.getNext();
 //        }
 
-        Node<E> toDelete = getNodeByElement(element);
-        Node<E> previous = toDelete.getPrev();
-        if (toDelete == first) {
+        Node<E> current = getNodeByElement(element);
+        Node<E> previous = current.getPrev();
+        if (current == first) {
 //            first = first.getNext();
 //            first.setPrev(null);
             removeFromBeginning();
-        } else if (toDelete == last) {
+        } else if (current == last) {
 //            last = last.getPrev();
 //            last.setNext(null);
             removeFromEnd();
         } else {
-            toDelete = toDelete.getNext();
-            toDelete.setPrev(previous);
-            previous.setNext(toDelete);
+            current = current.getNext();
+            current.setPrev(previous);
+            previous.setNext(current);
             size--;
         }
         return true;
