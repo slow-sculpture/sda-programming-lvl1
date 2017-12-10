@@ -31,6 +31,7 @@ public class Queue<E> implements Collection<E> {
     }
 
     @Override
+    //dodanie ostatniego elementu do kolejki
     public boolean add(E element) {
         size++;
         if (head == null){
@@ -46,11 +47,12 @@ public class Queue<E> implements Collection<E> {
     }
 
     @Override
+    //usuwanie pierwszego elementu z kolejki
     public E remove() {
         size--;
-        E elementToDelete = tail.getData();
-        tail = tail.getPrev();
-        tail.setNext(null);
+        E elementToDelete = head.getData();
+        head = head.getNext();
+        head.setPrev(null);
         return elementToDelete;
     }
 
@@ -61,7 +63,7 @@ public class Queue<E> implements Collection<E> {
 
     }
 
-    private int indexOf(E element) {
+    public int indexOf(E element) {
 
         Node<E> helper = head;
         int index = 0;
