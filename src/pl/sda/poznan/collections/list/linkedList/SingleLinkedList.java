@@ -47,7 +47,7 @@ public class SingleLinkedList<E> implements GenericList<E> {
             insertDataAtBeginning(element);
             //insertDataAtEnd(element);
         }
-        return false;
+        return true;
     }
 
     private void insertDataAtBeginning(E element) {
