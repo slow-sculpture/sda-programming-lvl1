@@ -9,7 +9,7 @@ package pl.sda.poznan.sort;
 public class BubbleSort {
     public static void sort(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 1; j < array.length; j++) {
+            for (int j = 1; j < array.length - i; j++) {
                 if (array[j] < array[j - 1]) {
                     ///////  > ///// - to uszereguje od max do min
                     //zamien elementy tablicy
@@ -28,7 +28,7 @@ public class BubbleSort {
 //        int result = s1.compareTo(s2);
         //jezeli sa rowne zwroci 0, w przeciwnym przypadku <0 lub >0 (< >)
         for (int i = 0; i < array.length; i++) {
-            for (int j = 1; j < array.length; j++) {
+            for (int j = 1; j < array.length - i; j++) {
                 int result = array[j].compareTo(array[j - 1]);
                 if (result < 0) {
                     String helper = array[j];
