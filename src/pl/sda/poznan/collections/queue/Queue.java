@@ -49,10 +49,10 @@ public class Queue<E> implements Collection<E> {
     @Override
     //usuwanie pierwszego elementu z kolejki
     public E remove() {
-        size--;
         E elementToDelete = head.getData();
         head = head.getNext();
         head.setPrev(null);
+        size--;
         return elementToDelete;
     }
 
