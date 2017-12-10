@@ -101,7 +101,8 @@ public class GenericArrayList<E> implements GenericList<E> {
 
 
     @Override
-    public E removeFromEnd() {
+    //former removeFromEnd
+    public E remove() {
         int indexOfLastElement = size - 1;
         Object toDelete = values[size];
         values[indexOfLastElement] = null;

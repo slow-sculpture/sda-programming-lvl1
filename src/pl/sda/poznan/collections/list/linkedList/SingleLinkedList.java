@@ -196,7 +196,8 @@ public class SingleLinkedList<E> implements GenericList<E> {
     }
 
     @Override
-    public E removeFromEnd() {
+    //former removeFromEnd
+    public E remove() {
 //        E elemToDelete = get(size - 1);
 //        remove(elemToDelete);
 //        return elemToDelete;

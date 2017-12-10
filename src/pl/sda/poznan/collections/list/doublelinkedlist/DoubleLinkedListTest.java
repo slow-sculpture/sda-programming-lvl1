@@ -33,7 +33,7 @@ public class DoubleLinkedListTest {
     public void shouldRemoveFromEnd(){
         list.add("First");
         list.add("Second");
-        String s = list.removeFromEnd();
+        String s = list.remove();
         assertEquals(1, list.size());
         assertEquals(s,"Second");
     }

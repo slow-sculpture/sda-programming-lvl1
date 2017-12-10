@@ -130,7 +130,7 @@ public class DoubleLinkedList<E> implements GenericList<E> {
         } else if (current == last) {
 //            last = last.getPrev();
 //            last.setNext(null);
-            removeFromEnd();
+            remove();
         } else {
             current = current.getNext();
             current.setPrev(previous);
@@ -160,7 +160,8 @@ public class DoubleLinkedList<E> implements GenericList<E> {
     }
 
     @Override
-    public E removeFromEnd() {
+    //former removeFromEnd
+    public E remove() {
         //dzieki podwojnemu wiazaniu mozliwe jest o wiele szybsze usuwanie
 
         //pobierz wartosc ostatniego elementu

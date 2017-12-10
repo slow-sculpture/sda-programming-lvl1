@@ -155,7 +155,7 @@ public class SingleLinkedListTest {
         peopleList.add(student);
         peopleList.add(pacjent);
 
-        peopleList.removeFromEnd();
+        peopleList.remove();
         assertEquals(3, peopleList.size());
     }
 
