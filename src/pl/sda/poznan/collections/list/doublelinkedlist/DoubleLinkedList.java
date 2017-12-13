@@ -144,19 +144,30 @@ public class DoubleLinkedList<E> implements GenericList<E> {
 
     @Override
     public void clear() {
-
+        first = null;
+        last = null;
+        size = 0;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if(index<0 || index >=size){
+            throw new IllegalArgumentException("Wrong index");
+        }
+        Node<E> helper = first;
+        int i = 0;
+        while(i!=index){
+            helper = helper.getNext();
+            i++;
+        }
+        return helper.getData();
     }
 
     @Override
     public E remove(int index) {
-        //E toDel = getNodeByIndex(index);
-        //remove(toDel);
-        return null;
+        E delEl = this.get(index);
+        this.remove(delEl);
+        return delEl;
     }
 
     @Override
