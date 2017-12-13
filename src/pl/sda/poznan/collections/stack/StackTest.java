@@ -43,7 +43,15 @@ public class StackTest {
     }
 
     @Test
-    public void search() throws Exception {
+    public void shouldGivePositionFromTop()  {
+        stringStack.push("1st");
+        stringStack.push("2nd");
+        stringStack.push("3rd");
+        stringStack.push("4th");
+        stringStack.push("5th");
+
+
+        assertEquals(3, stringStack.search("3rd"));
     }
 
 }

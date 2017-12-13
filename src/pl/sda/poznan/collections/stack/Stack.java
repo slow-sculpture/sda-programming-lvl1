@@ -32,7 +32,7 @@ public class Stack<E> {
     //zawsze pobieramy szczyowy element
     //wiec metoda nie przejmuje argumentu
     public E pop() {
-        if(top == null)
+        if (top == null)
             throw new ArrayIndexOutOfBoundsException("Stack is empty");
         Node<E> toDel = top;
         top = top.getPrev();
@@ -53,7 +53,7 @@ public class Stack<E> {
 
     //zwraca element top bez usuwania
     public E peak() {
-        if(top == null)
+        if (top == null)
             return null;
         return top.getData();
 
@@ -66,6 +66,17 @@ public class Stack<E> {
     //jezeli drugi itd - return 2 itd
     //jesli nie - return -1
     public int search(E element) {
+        int positionFromTop = 1;
+        Node<E> helper = top;
+        for (int i = size - 1; i >= 0; i--) {
+            while (helper != null) {
+                if (helper.getData().equals(element)) {
+                    return positionFromTop;
+                }
+                helper = helper.getPrev();
+                positionFromTop++;
+            }
+        }
         return -1;
     }
 
