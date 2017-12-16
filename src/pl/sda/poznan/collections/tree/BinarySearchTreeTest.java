@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class BinarySearchTreeTest {
     Tree<Integer> tree = new BinarySearchTree<>();
+
     @Test
     public void insert() {
 
@@ -23,9 +24,9 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void insertRandomValues(){
+    public void insertRandomValues() {
         Random random = new Random();
-        for(int i = 0; i<20; i++){
+        for (int i = 0; i < 20; i++) {
             tree.insert(random.nextInt(100));
 
         }
@@ -33,7 +34,7 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void shouldFindMaxElement(){
+    public void shouldFindMaxElement() {
         tree.insert(15);
         tree.insert(10);
         tree.insert(20);
@@ -47,7 +48,7 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void shouldFindMinElement(){
+    public void shouldFindMinElement() {
         tree.insert(15);
         tree.insert(10);
         tree.insert(20);
@@ -60,6 +61,45 @@ public class BinarySearchTreeTest {
         assertEquals(5, min);
     }
 
+    @Test
+    public void shouldDeleteLeaf() {
+        tree.insert(15);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+        tree.insert(13);
+        tree.insert(18);
+        tree.insert(23);
 
+        tree.delete(5);
+        tree.traversal();
 
+    }
+
+    @Test
+    public void shouldDeleteSingleKidParent() {
+        tree.insert(15);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(13);
+        tree.insert(18);
+        tree.insert(23);
+
+        tree.delete(10);
+        tree.traversal();
+    }
+
+    @Test
+    public void shouldDeleteDoubleKidParent() {
+        tree.insert(15);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+        tree.insert(13);
+        tree.insert(18);
+        tree.insert(23);
+
+        tree.delete(10);
+        tree.traversal();
+    }
 }

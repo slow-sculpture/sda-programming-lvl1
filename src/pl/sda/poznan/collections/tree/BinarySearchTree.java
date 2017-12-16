@@ -56,14 +56,67 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         if (root == null) {
             throw new IllegalArgumentException("Brak elementow w drzewie");
         } else {
-            delete(data, root);
+            delete(root, data);
         }
     }
 
-    private void delete(T data, Node<T> node) {
-        if (data.compareTo(node.getData()) == 0) {
-            node.setData(null);
+    private Node<T> delete(Node<T> node, T data) {
+        if (node == null) {
+            return null;
+        }
+        //jesli kasowany element jest mniejszy od wezla to szukaj w lewym poddrzewie
+        if (data.compareTo(node.getData()) < 0) {
+            //lewym synem bedzie rekurencja tej metody
+            node.setLeft(delete(node.getLeft(), data));
+            //jesli kasowany element jest wiekszy od wezla to szukaj w prawym poddrzewie
+        } else if (data.compareTo(node.getData()) > 0) {
+            node.setRight(delete(node.getRight(), data));
+        } else {
+            //znalezlismy element do usuniecia
+            //usuniecie liscia nie skutkuje przesunieciem innych (dalszych) elementow bo ich nie ma
+            //usuniecie elementu posiadajacego synow skutkuje przesuniecie elementow j.n.
+            //wstawiamy w miejsce usuwanego elementu najwiekszy element z lewego poddrzewa lub najmniejszy z prawego
+            //3 przypadki:
+            // a) usuwanie liscia
+            if (node.getLeft() == null && node.getRight() == null) {
+                System.out.println("Removing leaf...");
+                return null;
+                //garbage collector sprzatnie obiekt
+            }
 
+            // b) usuwanie rodzica z 1 dzieckiem
+            if (node.getLeft() == null) {
+                System.out.println("Removing right...");
+                Node<T> tempNode = node.getRight();
+                node = null;
+                return tempNode;
+            } else if (node.getRight() == null) {
+                System.out.println("Removing left...");
+                Node<T> tempNode = node.getLeft();
+                node = null;
+                return tempNode;
+            }
+
+            // c) usuwanie rodzica z 2 dzieci
+            System.out.println("Removing with 2 items");
+            Node<T> tempNode = getPredecessor(node.getLeft());
+            node.setData(tempNode.getData());
+            node.setLeft(delete(node.getLeft(), tempNode.getData()));
+        }
+        return node;
+    }
+
+    /////// moj pomysl (niedokonczony)\\\\\\\\\\\
+    /*private void delete(T data, Node<T> node) {
+        if (data.compareTo(node.getData()) == 0) {
+
+            if (node.getLeft() != null){
+
+            }
+            if (node.getRight() != null){
+         //       node.getRight().setLeft();
+            }
+            node.setData(null);
 
         } else if (data.compareTo(node.getData()) < 0) {
             if (node.getLeft() != null) {
@@ -75,6 +128,16 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
             }
 
         }
+    }*/
+
+    /**
+     * Metoda znajdujaca poprzednika
+     */
+    private Node<T> getPredecessor(Node<T> node) {
+        if (node.getRight() != null) {
+            getPredecessor(node.getRight());
+        }
+        return node;
     }
 
     @Override
