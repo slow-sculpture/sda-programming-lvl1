@@ -14,6 +14,7 @@ public class InsertionSort {
         //zaczynamy od pierwszego elementu bo pierwszy juz jest posortowany
         for (int i = 1; i < arr.length; i++) {
             //przechodzimy przez zbior posortowany od tylu
+            //wazne! j>0 po porownujemy j-1
             for (int j = i; j > 0; j--) {
                 if (arr[j] < arr[j - 1]) {
                     int helper = arr[j];
