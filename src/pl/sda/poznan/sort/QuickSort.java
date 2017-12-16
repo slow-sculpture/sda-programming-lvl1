@@ -1,5 +1,8 @@
 package pl.sda.poznan.sort;
 
+//w srednim przypadku podobny do mergeSort
+//w najgorszym n2
+//ale ma duzo mniej pamieci
 public class QuickSort {
     private int[] numbers;
 
@@ -32,6 +35,7 @@ public class QuickSort {
         //przejdz lewa czesc i prawa czesc listy
         //wykonuj tak dlugo az indeksy lewej i prawej polowy sie zejda
         while (i <= j) {
+            //szukamy elementu wiekszego od pivota z lewej czesci i mniejszego z prawej
             while (numbers[i] < pivot) {
                 i++;
             }

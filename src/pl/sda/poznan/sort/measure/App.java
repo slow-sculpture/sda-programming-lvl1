@@ -1,9 +1,6 @@
 package pl.sda.poznan.sort.measure;
 
-import pl.sda.poznan.sort.BubbleSort;
-import pl.sda.poznan.sort.BucketSort;
-import pl.sda.poznan.sort.InsertionSort;
-import pl.sda.poznan.sort.MergeSort;
+import pl.sda.poznan.sort.*;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -39,12 +36,11 @@ public class App {
         //posortowac babelkowo - wyswietlic czas
         System.out.println("Sortowanie babelkowe");
         int[] toSort = Arrays.copyOf(array, arraySize);
-        System.out.println("Rozpoczynam sortowanie.............");
         long startTime = System.currentTimeMillis();
         BubbleSort.sort(toSort);
         long endTime = System.currentTimeMillis();
-        long time = endTime - startTime;
-        System.out.println("Zakonczono sortowanie.... Czas operacji to: " + time);
+        long bubbleTime = endTime - startTime;
+        System.out.println("Czas operacji to: " + bubbleTime);
         System.out.println();
 
         //posortowac mergeSort - wyswietlic czas
@@ -52,34 +48,55 @@ public class App {
         System.out.println("Sortowanie przez scalanie");
         int[] toMergeSort = Arrays.copyOf(array, arraySize);
         MergeSort mergeSort = new MergeSort();
-        System.out.println("Rozpoczynam sortowanie.............");
         long startMergeTime = System.currentTimeMillis();
         mergeSort.sort(toMergeSort);
         long endMergeTime = System.currentTimeMillis();
         long mergeTime = endMergeTime - startMergeTime;
-        System.out.println("Zakonczono sortowanie.... Czas operacji to: " + mergeTime);
+        System.out.println("Czas operacji to: " + mergeTime);
         System.out.println();
 
 
         //posortowac kubałkowo - wyswietlic czas
         System.out.println("Sortowanie kubelkowe");
         int[] toBucketSort = Arrays.copyOf(array, arraySize);
-        System.out.println("Rozpoczynam sortowanie.............");
         long startBucketTime = System.currentTimeMillis();
         BucketSort.sort(toBucketSort, 100);
         long endBucketTime = System.currentTimeMillis();
         long bucketTime = endBucketTime - startBucketTime;
-        System.out.println("Zakonczono sortowanie.... Czas operacji to: " + bucketTime);
+        System.out.println("Czas operacji to: " + bucketTime);
         System.out.println();
 
         //posortowac przez wstawianie - wyswietlic czas
         System.out.println("Sortowanie przez wstawianie");
         int[] toInsertionSort = Arrays.copyOf(array, arraySize);
-        System.out.println("Rozpoczynam sortowanie.............");
         long startInsertionTime = System.currentTimeMillis();
         InsertionSort.sort(toInsertionSort);
         long endInsertionTime = System.currentTimeMillis();
         long insertionTime = endInsertionTime - startInsertionTime;
-        System.out.println("Zakonczono sortowanie.... Czas operacji to: " + insertionTime);
+        System.out.println("Czas operacji to: " + insertionTime);
+        System.out.println();
+
+        //posortowac przez qucikSort - wyswietlic czas
+        QuickSort quickSort = new QuickSort();
+        System.out.println("Sortowanie przez quickSort");
+        int[] toQuickSort = Arrays.copyOf(array, arraySize);
+
+        long startQuickTime = System.currentTimeMillis();
+        quickSort.sort(toQuickSort);
+        long endQuickTime = System.currentTimeMillis();
+        long quickTime = endQuickTime - startQuickTime;
+        System.out.println("Czas operacji to: " + quickTime);
+        System.out.println();
+
+        System.out.println();
+        System.out.println("Ranking metod sortowania:");
+        long[] rank = {bubbleTime, mergeTime, bucketTime, insertionTime, quickTime};
+
+        System.out.println("bubbleTime | mergeTime | bucketTime | insertionTime | quickTime");
+        for (int i = 0; i < rank.length; i++)
+            System.out.print(rank[i] + "      |    ");
+
+        /*BucketSort bucketRank = new BucketSort();
+        bucketRank.sort(rank);*/
     }
 }

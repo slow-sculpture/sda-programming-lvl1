@@ -3,6 +3,18 @@ package pl.sda.poznan.sort;
 //zalozenie ze mamy liczy z przedzialu 0 - max
 
 public class BucketSort {
+    public static void sort(int[] arr){
+        //znalezc max
+        int max = arr[0];
+        for (int i = 1; i<arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        //wywolac metode
+        sort(arr, max);
+    }
+
     public static void sort(int[] arr, int max) {
         //utworzyc tablice na kubelki
         int[] bucket = new int[max + 1];
