@@ -102,4 +102,26 @@ public class BinarySearchTreeTest {
         tree.delete(10);
         tree.traversal();
     }
+
+    @Test
+    public void shouldReturnTrueIfContainsElement(){
+        tree.insert(15);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+        tree.insert(13);
+        tree.insert(18);
+        tree.insert(23);
+
+        boolean hasElement = tree.contains(10);
+        boolean hasNotElement = tree.contains(50);
+        assertEquals(true, hasElement);
+        assertEquals(false, hasNotElement);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void shouldThrowException() {
+        boolean hasElement = tree.contains(10);
+
+    }
 }

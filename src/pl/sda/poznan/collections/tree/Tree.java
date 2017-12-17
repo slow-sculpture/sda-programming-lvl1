@@ -29,6 +29,11 @@ package pl.sda.poznan.collections.tree;
 
 public interface Tree<T> {
     /**
+     * Metoda sprawdzajaca czy drzewo zawiera dany element
+     */
+    boolean contains(T data);
+
+    /**
      * Metoda dodajaca element
      * @param data
      */
@@ -55,5 +60,7 @@ public interface Tree<T> {
      * Metoda przechodzaca przez drzewo
      */
     void traversal();
+
+
 }
 

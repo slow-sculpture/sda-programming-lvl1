@@ -1,7 +1,50 @@
 package pl.sda.poznan.collections.tree;
 
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
+    //tutaj extends oznacza implementuje (głupia skladnia)
+    //klasa BST jest typu generycznego czyli moze pracowac z dowolnym typem
+    //ktory implementuje interfejs Comparable i klasa BST implementuje
+    //interfejs Tree
+    //<T extends Comparable<T>> ograniczenie przyjmowanego typu generycznego
+    //do takiego ktory implementuje interfejs Comparable
+    //dzieki temu zapisowi na obiekcie root mozemy wywolac metode compareTo()
     private Node<T> root;
+
+    @Override
+    public boolean contains(T data) {
+        if (root == null) {
+            throw new IllegalArgumentException("Brak elementow w drzewie");
+            //lub return false
+        } else {
+            return contains(root, data);
+        }
+        /*
+        ze wzgledu na pierwszego if w metodzie prywatnej if(root == null) bedzie obsluzony
+        wystarczy wpisac:
+        return contains(root, data);
+         */
+    }
+
+    private boolean contains(Node<T> node, T data) {
+        //bo wywola null.getData() ->NullPointerException
+        //dlatego trzeba obsluzyc jak bedzie null
+        //czyli nie bedzie takiego elementu
+        //ten if zalatwia z glownej metody if (root == null)
+        if (node == null){
+            return false;
+        }
+        //szukana wartosc zgadza sie z elementem drzewa
+        if (data.compareTo(node.getData()) == 0) {
+            return true;
+            //szukamy w lewym poddrzewie i rekurencyjnie spr czy 0
+        } else if (data.compareTo(node.getData()) < 0) {
+            return contains(node.getLeft(), data);
+            //szukamy w prawym poddrzewie i rekurencyjnie spr czy 0
+        } else {
+           return contains(node.getRight(), data);
+        }
+    }
+
 
     @Override
     public void insert(T data) {
@@ -185,6 +228,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
+
     /**
      * Przejscie in-order przez drzewo LVR
      */
@@ -234,4 +278,6 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         //rodzic
         System.out.println(node.getData().toString());
     }
+
+
 }
