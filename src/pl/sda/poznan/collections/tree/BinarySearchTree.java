@@ -25,6 +25,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
          */
     }
 
+    //wraper dla metody contains(T data)
     private boolean contains(Node<T> node, T data) {
         //bo wywola null.getData() ->NullPointerException
         //dlatego trzeba obsluzyc jak bedzie null
